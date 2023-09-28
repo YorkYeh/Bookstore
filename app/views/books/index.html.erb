@@ -1,6 +1,7 @@
 <h1 class="text-xl font-bold">Home Page</h1>
 
 <%= link_to '新增書籍', new_book_path ,class: "action-btn"%>
+<%= link_to '購物車', cart_path ,class: "action-btn"%>
 
 
 <div class="overflow-x-auto">
@@ -19,7 +20,7 @@
       <% @books.each do |book| %>
       <!-- row 1 -->
       <tr>
-        <td></td>
+        <td><%= button_to '加到購物車', add_cart_path(book), method: 'post', class:'add-btn'%></td>
         <td><%= book.name %></td>
         <td><%= book.description %></td>
         <td><%= book.price %></td>
