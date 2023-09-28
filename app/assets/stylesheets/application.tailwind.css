@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.action-btn {
+  @apply inline-block py-1 text-white rounded cursor-pointer select-none bg-sky-600 lg:px-4 hover:bg-sky-700;
+}
+
+.field_with_errors {
+  @apply inline;
+}
+
+.field_with_errors input {
+  @apply border-2 border-red-500;
+}
