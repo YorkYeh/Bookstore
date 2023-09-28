@@ -2,15 +2,33 @@
 
 <%= link_to '新增書籍', new_book_path ,class: "action-btn"%>
 
-<ul>
-  <% @books.each do |book| %>
-    <li class="m-2">
-      <%= book.name %>
-      <%= book.description %>
-      <%= book.price %>
 
-      <%= link_to '更新', edit_book_path(book) ,class:'action-btn'%>
-      <%= link_to '刪除', book_path(book),data: { turbo_method: 'delete', turbo_confirm: '確認刪除?' } ,class:'action-btn' %>
-    </li>
-  <% end %>
-</ul> 
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <!-- head -->
+  
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+      <!-- row 1 -->
+      <tr>
+        <td></td>
+        <td><%= book.name %></td>
+        <td><%= book.description %></td>
+        <td><%= book.price %></td>
+        <td>
+          <%= link_to '更新', edit_book_path(book) ,class:'action-btn'%>
+          <%= link_to '刪除', book_path(book),data: { turbo_method: 'delete', turbo_confirm: '確認刪除?' } ,class:'action-btn' %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
