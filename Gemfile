@@ -23,6 +23,7 @@ end
 group :development do
   gem 'rubocop', '~> 1.56'
   gem 'web-console'
+  gem "annotate", "~> 3.2"  
 end
 
 group :test do
