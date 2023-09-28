@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  before_action :set_book, only: [:edit, :update, :destory]
+  before_action :set_book, only: %i[edit update destory]
   def index
     @books = Book.all.order(id: :desc)
   end
@@ -12,26 +14,25 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to books_path,notice: "新增成功"
+      redirect_to books_path, notice: '新增成功'
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @book.update(book_params)
-      redirect_to books_path, notice: "更新成功"
+      redirect_to books_path, notice: '更新成功'
     else
-      render :edit 
+      render :edit
     end
   end
 
   def destroy
     @book.destroy
-      redirect_to books_path, notice: "刪除成功"
+    redirect_to books_path, notice: '刪除成功'
   end
 
   private

@@ -1,0 +1,43 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - Rakefile
+    - Gemfile
+    - config/**/*
+    - spec/**/*
+    - lib/tasks/**/*
+    - db/**/*
+    - "bin/*"
+    - "tmp/**/*"
+    - ".git/**/*"
+    - "app/controllers/application_controller.rb"
+
+Style/Documentation:
+  Enabled: false
+
+# Method 長度限制
+Metrics/MethodLength:
+  Max: 30
+
+# Line 長度限制
+Layout/LineLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/BlockLength:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+    - "**/*.gemspec"
+
+Metrics/AbcSize:
+  Enabled: false
+
+Lint/NestedMethodDefinition:
+  Enabled: false
