@@ -1,5 +1,6 @@
-class CartItem
+# frozen_string_literal: true
 
+class CartItem
   attr_reader :book_id, :quantity
 
   def initialize(book_id, quantity = 1)
@@ -10,7 +11,7 @@ class CartItem
   def increment(n = 1)
     @quantity += n
   end
-  
+
   def book
     Book.find_by(id: book_id)
   end
@@ -18,5 +19,4 @@ class CartItem
   def price
     book.price * quantity
   end
-
-end  
+end

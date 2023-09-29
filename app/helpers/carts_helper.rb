@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module CartsHelper
   def current_cart
-    @cart ||= Cart.from_hash(session[:cart9487])
+    @current_cart ||= Cart.from_hash(session[:cart9487])
   end
 end

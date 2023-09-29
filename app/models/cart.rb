@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Cart
   attr_reader :items
 
@@ -24,20 +26,18 @@ class Cart
   end
 
   def serialize
-    all_items = items.map { |item|
-      { "book_id" => item.book_id, "quantity" => item.quantity}
-    }
+    all_items = items.map do |item|
+      { 'book_id' => item.book_id, 'quantity' => item.quantity }
+    end
 
-    { "items" => all_items }
+    { 'items' => all_items }
   end
 
   def self.from_hash(hash)
-
     if hash.nil?
       new []
-    else 
-      new hash["items"].map { |item_hash| CartItem.new(item_hash["book_id"], item_hash["quantity"])}
+    else
+      new(hash['items'].map { |item_hash| CartItem.new(item_hash['book_id'], item_hash['quantity']) })
     end
   end
-    
 end
