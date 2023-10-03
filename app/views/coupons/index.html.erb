@@ -1,0 +1,23 @@
+<h1 class="text-xl font-bold">可檢視折價卷目前使用狀況</h1>
+
+<%= link_to '新增折價卷', new_coupon_path, class:"action-btn"%>
+
+  <table class="table">
+  <tr>
+    <td>折價名稱</td>
+    <td>折扣方法</td>
+    <td>剩餘張數</td>
+    <td>開啟時間</td>
+    <td>關閉時間</td>
+  </tr>
+  <% @coupons.each do |coupon| %>
+  <tr>
+    <td><%= coupon.name %></td>
+    <td><%= coupon.discount %></td>
+    <td><%= coupon.count %></td>
+    <td><%= coupon.start_time %></td>
+    <td><%= coupon.expiry_time %></td>
+    <td><%= link_to '刪除折價卷', coupon_path(coupon.id), data: { turbo_method:'delete', turbo_confirm: "確定刪除？" }, class: 'action-btn' %></td>
+  </tr>
+  <% end %>
+  </table>

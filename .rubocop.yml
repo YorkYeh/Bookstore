@@ -11,6 +11,8 @@ AllCops:
     - "tmp/**/*"
     - ".git/**/*"
     - "app/controllers/application_controller.rb"
+    - "app/models/cart_item.rb"
+  SuggestExtensions: false
 
 Style/Documentation:
   Enabled: false

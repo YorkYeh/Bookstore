@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books
+  resources :coupons,only: %i[index new create destroy]
 
   resource :cart, only:[:show, :destroy] do
     collection do
