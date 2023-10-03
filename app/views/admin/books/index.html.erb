@@ -1,3 +1,10 @@
+<% if user_signed_in? %>
+<div>
+  <%= link_to '新增書籍', new_admin_book_path, class: "action-btn"%>
+  <%= link_to '查看折價券', admin_coupons_path, class: 'action-btn'%>
+</div>
+<% else %>
+<% end %>
 <div class="overflow-x-auto">
   <table class="table table-zebra">
     <thead>
@@ -15,6 +22,13 @@
         <td><%= book.name %></td>
         <td><%= book.description %></td>
         <td><%= book.price %></td>
+        <td>
+        <% if user_signed_in? %>
+          <%= link_to '更新', edit_admin_book_path(book) ,class:'action-btn'%>
+          <%= link_to '刪除', admin_book_path(book),data: { turbo_method: 'delete', turbo_confirm: '確認刪除?' } ,class:'action-btn' %>
+        <% else %>
+        <% end %>
+        </td>
       </tr>
     </tbody>
     <% end %>

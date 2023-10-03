@@ -3,10 +3,14 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  root 'home#index'
+  root 'books#index'
+  
+  resources :books, only: [:index]
 
-  resources :books
-  resources :coupons,only: %i[index new create destroy]
+  namespace :admin do
+    resources :books
+    resources :coupons,only: %i[index new create destroy]
+  end
 
   resource :cart, only:[:show, :destroy] do
     collection do

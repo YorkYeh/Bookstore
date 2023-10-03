@@ -1,26 +1,20 @@
-<h2>Log in</h2>
+<h1 class="text-xl font-bold">登入</h1> 
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input' %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class:'input' %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="my-5 actions">
+    <%= f.submit "登入" ,class: 'action-btn' %>
+  </div>
+  <div>
+    還沒有帳號嗎? <%= link_to '註冊', new_user_registration_path, class:'action-btn' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

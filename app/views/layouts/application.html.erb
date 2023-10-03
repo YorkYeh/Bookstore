@@ -9,10 +9,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
-  <body class="w-4/5 py-10 m-auto">
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-    <%= yield %>
+  <body>
+    <%= render 'shared/navbar' %>
+    <section class="w-4/5 py-10 m-auto">
+      <p>
+        <%= flash[:notice] %>
+        <%= flash[:alert] %>
+      </p>
+      <%= yield %>
+    </section>
   </body>
 </html>
