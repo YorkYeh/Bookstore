@@ -14,8 +14,8 @@
 class Book < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  
+
   belongs_to :user
-  has_many :orders, through: :book_orders
   has_many :book_orders, dependent: :destroy
+  has_many :orders, through: :book_orders
 end

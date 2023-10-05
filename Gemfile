@@ -35,3 +35,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem "aasm", "~> 5.5"
+gem "braintree", "~> 4.14"

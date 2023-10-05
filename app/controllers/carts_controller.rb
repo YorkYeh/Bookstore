@@ -7,7 +7,7 @@ class CartsController < ApplicationController
       session[:cart9487] = current_cart.serialize
       redirect_to books_path, notice: '已加入購物車'
     else
-      flash[:notice] = "請先登入會員"
+      flash[:notice] = '請先登入會員'
       redirect_to new_user_session_path
     end
   end

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 module Admin
   class BooksController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_book, only: %i[edit update destory]
+    before_action :set_book, only: %i[edit update destroy]
     def index
       @books = Book.all
     end
@@ -25,6 +26,7 @@ module Admin
     def edit; end
 
     def update
+      @book.user = current_user
       if @book.update(book_params)
         redirect_to admin_books_path, notice: '更新成功'
       else

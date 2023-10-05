@@ -1,0 +1,68 @@
+<%= link_to '繼續選購', root_path, class: "action-btn" %>
+  
+<div class="px-6">
+  <h1 class="my-2 text-2xl text-center text-gray-700">我的訂單</h1>
+</div>
+
+<section data-controller="order" >
+  <table class="table">
+  
+    <thead class="text-xl text-gray-700">
+      <tr>
+        <th>書名</th>
+        <th>單價</th>
+        <th></th>
+        <th>數量</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @current_order.pluck(:name, :id, :price, :count).each do |name, id, price, count| %>
+      <tr class="book_order">
+        <th><%= name %></th>
+        <td><%= price %></td>
+        <td>
+          <i class="fas fa-plus" 
+          data-action="click->order#add_to_cart" 
+          data-book-id="<%= id %>" 
+          data-order-id="<%= @order.id %>" 
+          data-user-id="<%= current_user.id %>" 
+          data-book-price="<%= price %>">
+          </i>
+        </td>
+        <td class="count"><%= count %></td>
+        <td>
+          <i class="fas fa-minus" 
+            data-action="click->order#remove_to_cart" 
+            data-book-id="<%= id %>" 
+            data-order-id="<%= @order.id %>" 
+            data-book-price="<%= price %>">
+          </i>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<div class="flex justify-between">
+  <div>
+    <%= label_tag :coupon, "使用折價卷" %>
+    <%= select_tag :coupon, options_for_select(@coupons.map { |coupon| [coupon.name, coupon.id] }, @order.coupon_id), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
+  </div>
+  <h2 data-order-target="total" class="text-2xl font-bold">小計：＄<%= @order.amount %>元</h2>
+</div>
+
+<div class="my-2">
+  <%= form_with(model: @order,url: checkout_order_path(@order)) do |f| %>
+    <div id="payment-form"></div>
+    <%= f.submit '結帳', class:'action-btn'%>
+  <% end %>
+</div>
+</section>
+
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+<script>
+  var clientToken = "<%= @client_token %>";
+  braintree.setup(clientToken, "dropin", {container: "payment-form"});
+</script>

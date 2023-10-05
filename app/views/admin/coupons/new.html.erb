@@ -1,6 +1,6 @@
 <h1 class="text-xl font-bold">新增折價卷</h1>
 
-<%= form_with(model: @coupon, url: coupons_path) do |coupon| %>
+<%= form_with(model: [:admin, @coupon], data: {turbo: false}) do |coupon| %>
   <div class="my-2">
     <%= coupon.label :name, "折價名稱" %>
     <%= coupon.text_field :name, class: 'input' %>
@@ -9,18 +9,5 @@
     <%= coupon.label :discount, "折扣方法" %>
     <%= coupon.select :discount, Coupon.discounts.map { |k, _| [k.to_s, k.to_s] }, {}, class: 'input' %>
   </div>
-  <div class="my-2">
-    <%= coupon.label :count, "可使用張數" %>
-    <%= coupon.number_field :conut, min: 1 , class: 'input'%>
-  </div>
-  <div class="my-2">
-    <%= coupon.label :start_time, "折價開始時間" %>
-    <%= coupon.datetime_field :start_time, min: Date.today , class: 'input'%>
-  </div>
-  <div class="my-2">
-    <%= coupon.label :expiry_time, "折價到期時間" %>
-    <%= coupon.datetime_field :expiry_time , class: 'input'%>
-  </div>
-
   <%= coupon.submit "新增折價卷", class: 'action-btn' %>
 <% end %>

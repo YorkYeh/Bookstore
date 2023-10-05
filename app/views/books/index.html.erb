@@ -1,22 +1,26 @@
-<div class="overflow-x-auto">
-  <table class="table table-zebra">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @books.each do |book| %>
-      <tr>
-        <td><%= link_to '加到購物車', add_cart_path(book), data: { turbo_method: :post }, class:'add-btn' %></td>
-        <td><%= book.name %></td>
-        <td><%= book.description %></td>
-        <td><%= book.price %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
+<div class="book_order">
+  <div class="count">
+    <table class="table table-zebra">
+      <thead>
+        <tr>
+          <th></th>
+          <th>書名</th>
+          <th>簡介</th>
+          <th>價錢</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+        <tr>
+          <td data-order-target="total"><%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id }, class: "add-btn" %></td>
+          <td><%= book.name %></td>
+          <td><%= book.description %></td>
+          <td><%= book.price %></td>      
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+
